@@ -28,9 +28,14 @@
             });
 
             const data = await response.json();
-            alert(data.message);
+            const messageElement = document.createElement("p");
+            messageElement.textContent = data.message;
+            messageElement.style.color = response.ok ? "green" : "red";
+            document.body.appendChild(messageElement);
+
             if (response.ok) {
-                window.location.href = "login.html";
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
+                window.location.replace("login.html");
             }
         });
     </script>
